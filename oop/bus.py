@@ -11,6 +11,6 @@ class Bus(Vehicle):
 
 bus1 = Bus(150)
 bus1.add_warning('Test')
-bus1.add_group(['Mike', 'Matt', 'Chungus', 'Skrygorn'])
+bus1.add_group(['Mike', 'Matt', 'Chungus', 'Gorlax'])
 print(bus1.passengers)
 bus1.drive()
