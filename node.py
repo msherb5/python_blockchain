@@ -24,7 +24,7 @@ class Node:
 
 
     def print_blockchain_elements(self):
-        for block in self.blockchain.get_chain():
+        for block in self.blockchain.chain:
             print('Outputting block')
             print(block)
         else:
