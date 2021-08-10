@@ -1,7 +1,7 @@
 from uuid import uuid4
 
 from blockchain import Blockchain
-from verification import Verification
+from utility.verification import Verification
 
 
 
@@ -40,7 +40,9 @@ class Node:
             print('2: Output values')
             print('3: Quit')
             print('5: Mine a new block')
-            print('7: Check transaction validity')
+            print('6: Create wallet')
+            print('7: Load wallet')
+            print('8: Check transaction validity')
             user_choice = self.get_user_choice()
             if user_choice == 1:
                 tx_data = self.get_transaction_value()
@@ -56,7 +58,11 @@ class Node:
                 waiting_for_input = False
             elif user_choice == 5:
                 self.blockchain.mine_block()
+            elif user_choice == 6:
+                pass
             elif user_choice == 7:
+                pass
+            elif user_choice == 8:
 
                 if Verification.verify_transactions(self.blockchain.get_open_transactions(), self.blockchain.get_balance):
                     print('All transactions valid')
@@ -64,7 +70,7 @@ class Node:
                     print('There are invalid transactions') 
             else:
                 print('input was invalid, please pick a value from the list ')
-            if not Verification.verify_chain(self.blockchain.get_chain()):
+            if not Verification.verify_chain(self.blockchain.chain):
                 self.print_blockchain_elements()
                 print('invalid blockchain!!')
                 break 
@@ -73,8 +79,11 @@ class Node:
             print('user done!')
         print('done')
 
-node = Node()
-node.listen_for_input()
+if __name__ == '__main__':
+    node = Node()
+    node.listen_for_input()
+
+
 
     
     

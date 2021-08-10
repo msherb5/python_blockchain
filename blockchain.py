@@ -5,13 +5,15 @@ import json
 import pickle
 
 
-import hash_util
+import utility.hash_util as hash_util
+from utility.verification import Verification
 from block import Block
 from transaction import Transaction
-from verification import Verification
+
 
 #The reward we give miners for creating a block
 MINING_REWARD = 10.0
+
 
 class Blockchain:
     def __init__(self, hosting_node_id):

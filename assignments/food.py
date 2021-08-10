@@ -44,3 +44,18 @@
 # Food.describe('apple', 'fruit')
 
 # Instance method
+
+class Food:
+    def __init__(self, name, kind):
+        self.name = name
+        self.kind = kind
+
+    def describe(self):
+        print('this food is {}, a kind of {}'.format(self.name, self.kind))
+
+
+food = Food('apple', 'fruit')
+food.describe()
+
+
+    
