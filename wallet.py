@@ -1,5 +1,5 @@
 from Crypto.PublicKey import RSA
-from Crypto.Signature import pkcs1_15
+from Crypto.Signature import PKCS1_v1_5
 from Crypto.Hash import SHA256
 import Crypto.Random
 import binascii
@@ -43,7 +43,19 @@ class Wallet:
         return (binascii.hexlify(private_key.exportKey(format='DER')).decode('ascii'), (binascii.hexlify(public_key.exportKey(format='DER')).decode('ascii')))
 
     def sign_transaction(self, sender, recipient, amount):
-        signer = pkcs1_15.new(RSA.importKey(binascii.unhexlify(self.private_key)))
+        signer = PKCS1_v1_5.new(RSA.import_key(binascii.unhexlify(self.private_key)))
         h = SHA256.new((str(sender) + str(recipient) + str(amount)).encode('utf8'))
         signature = signer.sign(h)
         return binascii.hexlify(signature).decode('ascii')
+
+    @staticmethod
+    def verify_transaction(transaction):
+        """Verify the signature of a transaction.
+
+        Arguments:
+            :transaction: The transaction that should be verified.
+        """
+        public_key = RSA.import_key(binascii.unhexlify(transaction.sender))
+        verifier = PKCS1_v1_5.new(public_key)
+        h = SHA256.new((str(transaction.sender) + str(transaction.recipient) + str(transaction.amount)).encode('utf8'))
+        return verifier.verify(h, binascii.unhexlify(transaction.signature))
