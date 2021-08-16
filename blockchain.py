@@ -157,7 +157,7 @@ class Blockchain:
         copied_transactions = self.__open_transactions[:]
         copied_transactions.append(reward_transaction)
         block = Block(len(self.__chain), hashed_block, copied_transactions, proof)
-        for tx in block.transactions:
+        for tx in block_transactions:
             if not Wallet.verify_transaction(tx):
                 return False
         self.__chain.append(block)

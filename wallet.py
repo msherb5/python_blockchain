@@ -4,6 +4,9 @@ from Crypto.Hash import SHA256
 import Crypto.Random
 import binascii
 
+
+from transaction import Transaction
+
 class Wallet:
     def __init__(self):
         self.private_key = None
@@ -50,11 +53,7 @@ class Wallet:
 
     @staticmethod
     def verify_transaction(transaction):
-        """Verify the signature of a transaction.
-
-        Arguments:
-            :transaction: The transaction that should be verified.
-        """
+        print("this is transaction.sender: " + str(transaction.sender))
         public_key = RSA.import_key(binascii.unhexlify(transaction.sender))
         verifier = PKCS1_v1_5.new(public_key)
         h = SHA256.new((str(transaction.sender) + str(transaction.recipient) + str(transaction.amount)).encode('utf8'))
