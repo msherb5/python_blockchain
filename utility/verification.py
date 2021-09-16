@@ -3,15 +3,20 @@
 from utility.hash_util import hash_string_256, hash_block
 from wallet import Wallet
 
+
 class Verification:
-    """A helper class which offer various static and class-based verification and validation methods."""
+    """A helper class which offer various static and class-based verification
+     and validation methods."""
     @staticmethod
     def valid_proof(transactions, last_hash, proof):
-        """Validate a proof of work number and see if it solves the puzzle algorithm (two leading 0s)
+        """Validate a proof of work number and see if it solves the puzzle algorithm
+         (two leading 0s)
 
         Arguments:
-            :transactions: The transactions of the block for which the proof is created.
-            :last_hash: The previous block's hash which will be stored in the current block.
+            :transactions: The transactions of the block for which the proof is 
+            created.
+            :last_hash: The previous block's hash which will be stored in the current
+             block.
             :proof: The proof number we're testing.
         """
         # Create a string with all the hash inputs
